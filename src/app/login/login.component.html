@@ -1,0 +1,26 @@
+<div class="form" [formGroup]="login">
+  <div class="tab-group">
+    <div id="signup">   
+      <h1>Login </h1>
+      <div>   
+        <h1>Welcome Back!</h1>
+        <form>
+          <div class="field-wrap">
+            <div class="text">Email:</div>
+            <input type="email" required autocomplete="off" formControlName="email"/>
+          </div>
+          
+          <div class="field-wrap">
+            <div class="text">Password:</div>
+            <input type="password" required autocomplete="off" formControlName="password"/>
+          </div>
+          <div class="text">
+            <p>Create an Account!! <a [routerLink]="['/sign']">signup</a></p>
+          </div>
+          <br>
+          <button type="submit" class="button" (click)="logindata(login)">Login </button>
+        </form>
+      </div>
+    </div><!-- tab-content -->
+  </div> <!-- /form -->
+</div>

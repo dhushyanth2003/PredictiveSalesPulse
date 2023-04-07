@@ -1,0 +1,7 @@
+<div class="container">
+  <h1>File Upload Dashboard</h1>
+  <form [formGroup]="fileForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+    <input type="file" name="file" formControlName="file">
+    <button type="submit">Upload</button>
+  </form>
+</div>

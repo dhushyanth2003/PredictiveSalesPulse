@@ -1,0 +1,28 @@
+<div class="bg">
+<div class="form" [formGroup]="signup">
+  <div id="signup">   
+    <h1>Sign Up for Free</h1>
+    <div class="top-row">
+        <div class="text">First Name</div>
+        <input type="text" formControlName="fname" class="text" />
+    </div>
+    <div class="top-row">
+      <div class="text">Last Name</div>
+      <input type="text" formControlName="lname" class="text" />
+    </div>
+    <div class="field-wrap">
+      <div class="text">Email</div>
+      <input type="email" formControlName="email" class="text" />
+    </div>
+    <div class="field-wrap">   
+      <div class="text">password</div>        
+      <input type="password" formControlName="password" class="text" />
+    </div>
+    <p style="color: aliceblue;">Already have an account? <a href="login">Log in</a></p>
+  </div>
+  <div class="tab">
+    <button  type="submit" class="button signup-button" (click)="signupdata(signup)">Sign up</button>
+  </div>
+</div>
+</div>
+<router-outlet></router-outlet>
