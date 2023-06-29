@@ -1,37 +1,32 @@
-import { Component, OnInit} from '@angular/core';
+import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FormControl, FormGroup } from '@angular/forms';
-import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit {
-  fileForm: FormGroup;
-
+export class DashboardComponent {
+  plotUrl!: string;
+  inputNumber!: number;
+  selectedSeason!: string;
   constructor(private http: HttpClient) {}
 
-  ngOnInit() {
-    this.fileForm = new FormGroup({
-      file: new FormControl('')
-    });
-  }
+  onSubmit(event: Event) {
+    event.preventDefault();
+    console.log(this.inputNumber);
+    console.log(this.selectedSeason);
 
-  onSubmit() {
+    // Create a FormData object to send file
     const formData: FormData = new FormData();
-    formData.append('file', this.fileForm.get('file').value);
+    formData.append('file', (event.target as HTMLFormElement)['file'].files[0]);
+    formData.append('number', this.inputNumber.toString());
+    formData.append('season', this.selectedSeason);
 
-    this.http.post('http://localhost:5000/api/file', formData).subscribe(
-      (response) => {
-        // Handle successful response
-        console.log(response);
-      },
-      (error) => {
-        // Handle error
-        console.log(error);
-      }
-    );
+    // Send POST request to Flask API to generate plot
+    this.http.post<any>('http://localhost:5000/api/file', formData, { responseType: 'json' }).subscribe(result => {
+      // Set the plotUrl variable with the base64-encoded image
+      this.plotUrl = `data:image/png;base64, ${result.plot}`;
+    });
   }
 }

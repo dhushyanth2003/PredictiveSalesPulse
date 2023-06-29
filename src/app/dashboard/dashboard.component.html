@@ -1,7 +1,20 @@
-<div class="container">
-  <h1>File Upload Dashboard</h1>
-  <form [formGroup]="fileForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
-    <input type="file" name="file" formControlName="file">
-    <button type="submit">Upload</button>
-  </form>
+<div class="body">
+  <div>
+    <form (submit)="onSubmit($event)">
+      <input type="file" name="file" accept=".csv">
+      
+      <select id="season" name="season" [(ngModel)]="selectedSeason" >  
+        <option value="w">week</option>
+        <option value="m">Month</option>
+        <option value="y">Year</option>
+      </select>
+      <input type="number" id="months" placeholder="Enter Values" name="inputNumber" [(ngModel)]="inputNumber">
+
+      <button type="submit">Generate Plot</button>
+    </form>
+  </div>
+  
+  <div *ngIf="plotUrl">
+    <img [src]="plotUrl" alt="Plot">
+  </div>
 </div>

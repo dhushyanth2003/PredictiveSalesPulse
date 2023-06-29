@@ -4,15 +4,15 @@
       <h1>Login </h1>
       <div>   
         <h1>Welcome Back!</h1>
-        <form>
+        <form [formGroup]="login">
           <div class="field-wrap">
-            <div class="text">Email:</div>
-            <input type="email" required autocomplete="off" formControlName="email"/>
+            <div class="text">Username:</div>
+            <input type="text"  autocomplete="on"  formControlName="username" required />
           </div>
           
           <div class="field-wrap">
             <div class="text">Password:</div>
-            <input type="password" required autocomplete="off" formControlName="password"/>
+            <input type="password"  autocomplete="on" formControlName="password" required />
           </div>
           <div class="text">
             <p>Create an Account!! <a [routerLink]="['/sign']">signup</a></p>

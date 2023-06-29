@@ -1,8 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { NgIfContext } from '@angular/common';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+
+
+interface signupresponse {
+  status: {
+    statusCode: number
+  }
+}
 
 @Component({
   selector: 'app-signup',
@@ -11,13 +18,13 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class SignupComponent implements OnInit{
   signup:FormGroup|any;
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient, private router: Router) {}
+  
   
   
   ngOnInit(): void{
     this.signup=new FormGroup({
-      'fname':new FormControl(),
-      'lname':new FormControl(),
+      'username':new FormControl(),
       'password':new FormControl(),
       'email':new FormControl()
     })
@@ -25,9 +32,18 @@ export class SignupComponent implements OnInit{
 
   signupdata(signup:FormGroup){ 
     console.log(this.signup.value);
-    this.http.post('http://localhost:5000/api/register-user', this.signup.value).subscribe((response: any) => {
-      console.log(response);
-      
+    this.http.post<signupresponse>('http://localhost:5000/api/register-user', this.signup.value).subscribe((response: any) => {
+      if(response.status && response.status.statusCode == 200){
+       
+        this.router.navigate(['/']);
+        alert("Signup Successfully completed");
+      }
+      else{
+        alert("User doesn't exist");
+      }
     });
   }
-}
+
+  
+
+  }  

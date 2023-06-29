@@ -15,28 +15,34 @@ interface LoginResponse {
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  login: FormGroup | any;
+  login!: FormGroup ;
   
   constructor(private http: HttpClient, private router: Router) {}
   
   ngOnInit(): void {
     this.login = new FormGroup({
-      'email': new FormControl(),
+      'username': new FormControl(),
       'password': new FormControl()
     });
   }
   
   logindata(login: FormGroup) { 
-    console.log(this.login.value);
-    this.http.post<LoginResponse>('http://localhost:5000/api/login', this.login.value).subscribe((response) => {
-      
+    console.log(login.value);
+    const username = login.value.username; 
+
+    this.http.post<LoginResponse>('http://localhost:5000/api/login', login.value).subscribe((response) => {
       if(response.status && response.status.statusCode == 200){
-          this.router.navigate(['/dash'])
+       
+        this.router.navigate(['/dash']);
+        alert("Welcome  "+username);
       }
       else{
-        alert("User doesn't exist")
+        alert("User doesn't exist");
       }
     });
+  }
+
+  
 
   }
-}
+

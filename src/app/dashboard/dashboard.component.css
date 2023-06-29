@@ -1,59 +1,85 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f7f7f7;
-  }
-  
-  .container {
-    margin: 0 auto;
-    
-    background-color: #e1b382;
-    padding: 90px;    
-    max-width: 700px;
-    margin: 10% auto;
-    padding-bottom: 5px;
-    
-  }
-  
-  h1 {
-    font-size: 36px;
-    font-weight: bold;
-    margin-bottom: 30px;
-  }
-  
-  form input[type="file"] {
-    margin-bottom: 20px;
-  }
-  
-  form button[type="submit"] {
-    background-color: #4CAF50;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .file-list {
-    margin-top: 50px;
-  }
-  
-  .file-list h2 {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
-  .file-list ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .file-list li {
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
-.formdata{
+/* Center the form and image */
+.body {
+  display: flex;
+  background-image: url("https://c0.wallpaperflare.com/preview/347/508/926/analysis-analytics-analyzing-business.jpg");
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Form styling */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-bottom: 20px;
-  size: 10px;
+}
+
+/* Input styling */
+input[type="file"],
+input[type="number"] {
+  margin-bottom: 10px;
+  padding: 8px;
+  color: aliceblue;
+  background-color: rgb(60, 53, 53);
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s ease;
+  width: 250px;
+}
+
+input[type="number"] {
+  width: 150px;
+}
+
+input[type="file"]:hover,
+input[type="file"]:focus,
+input[type="number"]:hover,
+input[type="number"]:focus {
+  border-color: #aaa;
+}
+
+/* Select styling */
+select {
+  margin-bottom: 10px;
+  padding: 8px;
+  
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s ease;
+  width: 250px;
+}
+
+select:hover,
+select:focus {
+  border-color: #aaa;
+}
+
+/* Button styling */
+button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  outline: none;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* Image styling */
+img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
